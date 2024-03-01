@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final CarroController controllerCarros = CarroController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TelaListaCarros(controllerCarros),
+      home: ChangeNotifierProvider(
+          create: (context) => CarroController(), child: TelaListaCarros()),
     );
   }
 }

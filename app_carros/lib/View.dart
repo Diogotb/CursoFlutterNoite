@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TelaListaCarros extends StatelessWidget {
-  TelaListaCarros(CarroController controllerCarros);
 
   @override
   Widget build(BuildContext context) {
