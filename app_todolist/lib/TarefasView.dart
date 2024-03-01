@@ -6,7 +6,6 @@ class TarefasScreen extends StatelessWidget {
   // Controlador para o campo de texto de nova tarefa
   final TextEditingController _controller = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +51,11 @@ class TarefasScreen extends StatelessWidget {
                       trailing: Checkbox(
                         value: model.tarefas[index].concluida,
                         onChanged: (value) {
-                          // Chamando o método marcarComoConcluida do Provider para atualizar o estado
-                          model.marcarComoConcluida(index);
+                          if (value != null) {// Chamando o método marcarComoConcluida do Provider para atualizar o estado
+                            model.marcarComoNaoConcluida(index);
+                          }else{model.marcarComoConcluida(index);}
+                          
+                          
                         },
                       ),
                       // Exclui a tarefa ao manter pressionado
