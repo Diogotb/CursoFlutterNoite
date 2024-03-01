@@ -1,50 +1,49 @@
+import 'dart:async';
+
 import 'package:app_carros/Controller.dart';
 import 'package:app_carros/Model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TelaListaCarros extends StatelessWidget {
-  TelaListaCarros(CarroController controllerCarros);
+  final CarroController controllerCarros;
+  TelaListaCarros(this.controllerCarros);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // Barra superior do aplicativo
       appBar: AppBar(
-        title: Text('Lista de Tarefas'),
+        title: Text('Meus Carros'),
       ),
       // Corpo principal do aplicativo
       body: Column(
         children: [
-          //Lista os Carros da Lista
-          Consumer<CarroController>(
-            builder: (context, model, child) {
-              return ListView.builder(
-                itemCount: model.listarCarros.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    // Exibe os Carros Listados no Controller
-                    title: Text(model.listarCarros[index].modelo),
-                    //quando clicado o carro vai abrir a telaDescricaoCarro
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              TelaDetalheCarro(model.listarCarros[index]),
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-            },
+          // Lista de Carros
+          Expanded(
+            child: 
+            //Consumer<CarroController>(
+              //builder: (context, model, child) {
+                //return 
+                  ListView.builder(
+                  itemCount: controllerCarros.listarCarros.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      // Exibição do nome do carro
+                      title: Text(controllerCarros.listarCarros[index].modelo),
+                      // Exclui a tarefa ao manter pressionado
+                      onTap: () {
+                        // Chamando a outra tela
+                        
+                      },
+                    );
+                  },
+                ),
+            //   },
+            // ),
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: showDialog(builder: ),
-      // ),
     );
   }
 }
