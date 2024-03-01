@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TelaListaCarros extends StatelessWidget {
-<<<<<<< HEAD
+
   final CarroController controllerCarros;
   TelaListaCarros(this.controllerCarros);
-=======
->>>>>>> ca2a8f1e50bdaffe161b453025cc5d81db4767c2
+
 
   @override
   Widget build(BuildContext context) {
