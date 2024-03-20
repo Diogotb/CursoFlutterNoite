@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget{
             children: [
             Column(
               children: [
-                Text('Texto da Primeira Coluna')
+                Text('Texto da Primeira Coluna'),
+                //Icone
               ],
             ),
             Column(
