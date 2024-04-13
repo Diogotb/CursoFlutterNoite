@@ -2,7 +2,6 @@ import 'Model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-
 class BancoDadosCrud {
   static const String DB_NOME = 'contacts.db'; // Nome do banco de dados
   static const String TABLE_NOME = 'contacts'; // Nome da tabela
@@ -12,11 +11,9 @@ class BancoDadosCrud {
           "nome TEXT, email TEXT, telefone TEXT," +
           "endereco TEXT)";
 
-  
   Future<Database> _getDatabase() async {
     return openDatabase(
-      join(
-          await getDatabasesPath(), DB_NOME), // Caminho do banco de dados
+      join(await getDatabasesPath(), DB_NOME), // Caminho do banco de dados
       onCreate: (db, version) {
         return db.execute(
             CREATE_CONTACTS_TABLE_SCRIPT); // Executa o script de criação da tabela quando o banco é criado
@@ -24,6 +21,7 @@ class BancoDadosCrud {
       version: 1,
     );
   }
+
   // Método para criar um novo contato no banco de dados
   Future<void> create(ContatoModel model) async {
     try {
@@ -54,6 +52,20 @@ class BancoDadosCrud {
       print(ex);
       return [];
     }
+  }
+
+  //CRIAR UM MÉTODO DO TIPO BOOL
+  Future<bool> acessoInterno(user, senha) async {
+    bool x = false;
+    final Database db = await _getDatabase();
+    var retorno = db.rawQuery('Select * FROM nome_tabela where user = 
+                              'user' and senha='senha'');
+    if(retorno>0){
+      x=true;
+    }else{
+      
+    }
+    return x;
   }
 
   // Método para atualizar um contato no banco de dados

@@ -14,16 +14,16 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
         brightness: Brightness.light),
         darkTheme: ThemeData(brightness: Brightness.dark),
-        home: HomePage());
+        home: ConfiguracoesPage());
   }
 }
 
-class HomePage extends StatefulWidget {
+class ConfiguracoesPage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<ConfiguracoesPage> {
   //Atributos
   late SharedPreferences _prefs;
   bool _darkMode = false;
