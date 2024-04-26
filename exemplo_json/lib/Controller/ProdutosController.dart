@@ -23,14 +23,11 @@ class ProdutoController {
     _produtos.addAll(jsonList.map((e) => Produto.fromJson(e)));
   }
 // Método para carregar produtos do arquivo JSON
-  Future<void> upProdutos() async {
-    // Carrega o conteúdo do arquivo JSON da pasta assets
-    final data = await rootBundle.loadString('assets/produtos.json');
-    // Decodifica o conteúdo JSON em uma lista dinâmica
-    final jsonList = _produtos.map((produto) => produto.toJson()).toList();
-    // Escreve a lista de JSON no arquivo produtos.json
-    await File(data).writeAsString(json.encode(jsonList));
-  }
+  // Future<void> upProdutos() async {
+  //   final data = await rootBundle.loadString('assets/produtos.json');
+  //   final jsonList = _produtos.map((produto) => produto.toJson()).toList();
+  //   await File(data).writeAsString(json.encode(jsonList));
+  // }
 
   Future<void> saveProdutos() async {
     // Obtém o diretório de documentos do aplicativo
