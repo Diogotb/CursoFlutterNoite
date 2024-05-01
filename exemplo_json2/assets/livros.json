@@ -22,5 +22,22 @@
         "categoria": "Romance Realista",
         "isbn": 9788521603067,
         "capa":"assets/img/img03.jpg"
+    },
+    {
+        "titulo": "O Senhor dos Anéis",
+        "autor": "JKTolkin",
+        "sinopse": "O Senhor dos Anéis é um livro de ficção científica escrito por",
+        "categoria": "Ficção Científica",
+        "isbn": 9788521603065,
+        "capa":"assets/img/img03.jpg"
+    }
+    ,
+    {
+        "titulo": "CEM  Anos de Solidão",
+        "autor": "Gabriel Garcia Marques",
+        "sinopse": "O Senhor dos Anéis é um livro de ficção científica escrito por",
+        "categoria": "Ficção Científica",
+        "isbn": 9788521603065,
+        "capa":"assets/img/img03.jpg"
     }
 ]
