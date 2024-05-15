@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'service.dart';
 
@@ -23,8 +24,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _weatherData = new Map<String,dynamic>();
+    _weatherData = {
+      'name' : '',
+      'main':{'temp':0},
+      'weather':[
+        {'description':''}
+      ]
+    };
+
   }
+
+  @override
+  void dispose(){
+    super.dispose;
+    _cityController.dispose();
+  }
+ 
 
   Future<void> _fetchWeatherData(String city) async{
     try {
@@ -37,6 +52,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
   }
 
+  Future<void> _fetchWeatherLocation() async{
+    try{
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high
+    );
+    final weatherData = await _weatherService.getWeatherByLocation(
+      position.latitude, position.longitude
+    );
+    setState(() {
+      _weatherData = weatherData;
+    });
+    } catch(e){
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,25 +76,30 @@ class _WeatherScreenState extends State<WeatherScreen> {
         title: const Text("Exemplo Weather-API")
       ),
       body: Padding(
-        padding: EdgeInsets.all(12),
-        child:Center(
-          child: Form(
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: _cityController,
-                  decoration: const InputDecoration(labelText:"Digite a Cidade"),
-                  validator: (value){
-                    if(value!.trim().isEmpty){
-                      return "Insira a Cidade";
-                    }
-                  },
-                ),
-                //incluir um botão 
-              ],
-            ),)
+        padding: const EdgeInsets.all(12),
+        child: FutureBuilder(
+          future: _fetchWeatherLocation(), 
+          builder: (context,snapshot){
+            if(_weatherData.isEmpty){
+              return const Center(child:CircularProgressIndicator());
+            }else{
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('City: ${_weatherData['name']}'), 
+                    // Exibe o nome da cidade.
+                    Text('Temperature: ${(_weatherData['main']['temp']).toInt - 273} °C'),
+                     // Exibe a temperatura em graus Celsius.
+                    Text('Description: ${_weatherData['weather'][0]['description']}'), 
+                      // Exibe a descrição do clima.
+                  ],
+                )
+              );
+            }
+          }
+          )
         )
-      )
     );
   }
 }
