@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
     <application
         android:label="projeto_api_geo"
         android:name="${applicationName}"

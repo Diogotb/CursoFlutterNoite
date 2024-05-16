@@ -22,10 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future <void> _getWeatherInit() async{
     try {
+      print("sem localizaçao");
       Position position = await Geolocator.getCurrentPosition();
+      print(position.latitude);
       _weatherData = await _weatherService.getWeatherByLocation(
         position.latitude, position.longitude
         );
+      print("weather ok");
       setState(() {
       });
     } catch (e) {
@@ -78,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 10),
                           Text(_weatherData["weather"][0]["description"]),
                           const SizedBox(height: 10),
-                          Text(_weatherData["main"]["temp"].toString()),
+                          Text((_weatherData["main"]["temp"]-273).toString()),
                           const SizedBox(height: 10),
                         ],
                       )
